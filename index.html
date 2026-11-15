@@ -1,1 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CINEIA - AI Video Effects by MaxStudio</title>
+    <meta name="description" content="Convierte tus vídeos en auténticas escenas de cine con el poder de la inteligencia artificial.">
+    
+    <!-- Fuentes de Google (Estilo moderno) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <style>
+        /* VARIABLES DE COLOR BASADAS EN TU LOGO */
+        :root {
+            --bg-dark: #0a0a1a;
+            --primary-purple: #8b00ff;
+            --primary-blue: #00d2ff;
+            --accent-yellow: #ffcc00;
+            --text-light: #ffffff;
+            --text-muted: #b3b3b3;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        /* RESET Y ESTILOS GENERALES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(139, 0, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(0, 210, 255, 0.15) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        /* BANNER SUPERIOR (BarNet) */
+        .barnet {
+            width: 100%;
+            background: linear-gradient(90deg, var(--primary-purple), var(--primary-blue), var(--accent-yellow));
+            background-size: 200% auto;
+            color: #000;
+            text-align: center;
+            padding: 8px 15px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: gradientShift 3s linear infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* CABECERA / NAVEGACIÓN */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(10, 10, 26, 0.7);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-left img {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(139, 0, 255, 0.5);
+        }
+
+        .header-left h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary-blue), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            margin-left: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+            text-shadow: 0 0 10px var(--primary-blue);
+        }
+
+        /* HERO SECTION (Portada Principal) */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 80px 20px 60px;
+            position: relative;
+        }
+
+        .hero img.main-logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(139, 0, 255, 0.4), 0 0 20px rgba(0, 210, 255, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero h2 span {
+            background: linear-gradient(45deg, var(--accent-yellow), var(--primary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary-purple), var(--primary-blue));
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 25px rgba(139, 0, 255, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 35px rgba(0, 210, 255, 0.6);
+        }
+
+        /* SECCIÓN DE CARACTERÍSTICAS (Texto) */
+        .features-text {
+            padding: 60px 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .features-text h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+
+        .features-grid-text {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+
+        .feature-item h4 {
+            color: var(--accent-yellow);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-item p {
+            color: var(--text-muted);
+        }
+
+        /* GALERÍA DE LOGOS / ICONOS (Glassmorphism) */
+        .gallery-section {
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-section h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .gallery-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .gallery-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+
+        .gallery-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* PIE DE PÁGINA */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 60px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            header { flex-direction: column; gap: 15px; }
+            .social-links a { margin: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BANNER SUPERIOR -->
+    <div class="barnet">
+        🚀 Descubre el poder de la IA en tus vídeos - MaxStudio Official
+    </div>
+
+    <!-- CABECERA -->
+    <header>
+        <div class="header-left">
+            <!-- Reemplaza 'logo_app_cineia.png' si tu logo principal tiene otro nombre exacto en tu repo -->
+            <img src="logo_app_cineia.png" alt="CINEIA Logo">
+            <h1>CINEIA</h1>
+        </div>
+        <div class="social-links">
+            <!-- Enlaces a tus redes -->
+            <a href="https://x.com/hellofiti" target="_blank" title="Síguenos en X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://maxstudiotoken.github.io/MaxStudio/" target="_blank" title="MaxStudio Official"><i class="fa-solid fa-globe"></i></a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <img src="logo_app_cineia.png" alt="CINEIA App Icon" class="main-logo">
+        <h2>🎬 CINEIA: <span>AI VIDEO EFFECTS</span></h2>
+        <p>¡Convierte tus vídeos en auténticas escenas de cine con el poder de la inteligencia artificial! Diseñada para transformar tus grabaciones en creaciones espectaculares mediante efectos visuales y herramientas creativas.</p>
+        <a href="https://maxstudiotoken.github.io/MaxStudio/" class="btn-primary" target="_blank">Descubre MaxStudio</a>
+    </section>
+
+    <!-- SECCIÓN DE TEXTO / CARACTERÍSTICAS -->
+    <section class="features-text">
+        <h3>✨ Descubre nuevas posibilidades</h3>
+        <div class="features-grid-text">
+            <div class="feature-item">
+                <h4><i class="fa-solid fa-wand-magic-sparkles"></i> Efectos Especiales con IA</h4>
+                <p>Crea escenas sorprendentes con efectos visuales inspirados en el mundo del cine.</p>
+            </div>
+            <div class="feature-item">
+                <h4><i class="fa-solid fa-film"></i> Edición de Vídeo</h4>
+                <p>Dale un toque profesional y creativo a tus grabaciones. Experimenta con diferentes estilos.</p>
+            </div>
+            <div class="feature-item">
+                <h4><i class="fa-solid fa-bolt"></i> Creatividad sin Límites</h4>
+                <p>Desde vídeos de acción hasta escenas fantásticas, crea contenido original y llamativo.</p>
+            </div>
+            <div class="feature-item">
+                <h4><i class="fa-solid fa-mobile-screen"></i> Interfaz Moderna</h4>
+                <p>Fácil de utilizar, ideal para creadores de contenido y aficionados al cine.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍA DE LOGOS CON EXPLICACIÓN -->
+    <section class="gallery-section">
+        <h3>🌟 Características Principales</h3>
+        <div class="gallery-grid">
+            
+            <!-- Iterando sobre los nombres de archivo de tu GitHub -->
+            <div class="gallery-card">
+                <img src="logo_educacion.png" alt="Logo Educación">
+                <h4>Educación</h4>
+                <p>Aprende y enseña con herramientas visuales de vanguardia.</p>
+            </div>
+
+            <div class="gallery-card">
+                <img src="logo_cine.png" alt="Logo Cine">
+                <h4>Modo Cine</h4>
+                <p>Transforma tus clips con filtros y efectos de gran pantalla.</p>
+            </div>
+
+            <div class="gallery-card">
+                <img src="logo_publicidad.png" alt="Logo Publicidad">
+                <h4>Publicidad</h4>
+                <p>Crea anuncios impactantes y contenido para redes sociales.</p>
+            </div>
+
+            <div class="gallery-card">
+                <img src="logo_ajustes.png" alt="Logo Ajustes">
+                <h4>Ajustes Pro</h4>
+                <p>Control total sobre la IA para resultados personalizados.</p>
+            </div>
+
+            <div class="gallery-card">
+                <img src="logo_otros.png" alt="Logo Otros">
+                <h4>Otros Efectos</h4>
+                <p>Explora una librería en constante crecimiento de efectos IA.</p>
+            </div>
+
+            <div class="gallery-card">
+                <img src="logo_app_cineia.png" alt="Logo App">
+                <h4>App CINEIA</h4>
+                <p>Lleva todo el poder de la edición cinematográfica en tu bolsillo.</p>
+            </div>
+
+            <div class="gallery-card">
+                <img src="elige_donde_sucede_logo.png" alt="Elige dónde sucede">
+                <h4>Elige dónde sucede</h4>
+                <p>Cambia el entorno y el escenario de tus vídeos con un clic.</p>
+            </div>
+
+            <div class="gallery-card">
+                <img src="elige_vestuario_logo.png" alt="Elige vestuario">
+                <h4>Vestuario IA</h4>
+                <p>Prueba diferentes estilos de ropa en tus personajes.</p>
+            </div>
+
+            <div class="gallery-card">
+                <img src="planpartida_logo.png" alt="Plan Partida">
+                <h4>Plan Partida</h4>
+                <p>Estructura tus escenas y graba como un director de cine.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <p>Desarrollado por <a href="https://maxstudiotoken.github.io/MaxStudio/" target="_blank">MaxStudio</a></p>
+        <p>© 2026 CINEIA - AI Video Effects. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
