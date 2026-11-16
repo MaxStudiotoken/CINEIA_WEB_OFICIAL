@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CINEIA - AI Video Effects by MaxStudio</title>
-    <meta name="description" content="Convierte tus vídeos en auténticas escenas de cine con el poder de la inteligencia artificial.">
     
-    <!-- Fuentes de Google (Estilo moderno) -->
+    <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -27,7 +26,6 @@
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        /* RESET Y ESTILOS GENERALES */
         * {
             margin: 0;
             padding: 0;
@@ -46,24 +44,31 @@
             background-attachment: fixed;
         }
 
-        /* BANNER SUPERIOR (BarNet) */
+        /* =========================================
+           EL BARNET (BANNER SUPERIOR) SUPER VISIBLE 
+           ========================================= */
         .barnet {
             width: 100%;
-            background: linear-gradient(90deg, var(--primary-purple), var(--primary-blue), var(--accent-yellow));
-            background-size: 200% auto;
-            color: #000;
+            background: linear-gradient(90deg, #0a0a1a, var(--primary-purple), var(--primary-blue), var(--accent-yellow), #0a0a1a);
+            background-size: 300% auto;
+            color: #ffffff;
             text-align: center;
-            padding: 8px 15px;
+            padding: 15px 10px; /* Más alto */
             font-weight: 800;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            animation: gradientShift 3s linear infinite;
+            animation: gradientShift 4s linear infinite;
+            border-bottom: 2px solid var(--primary-blue);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.6), inset 0 0 15px rgba(139, 0, 255, 0.5);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px var(--primary-blue);
+            position: relative;
+            z-index: 1001;
         }
 
         @keyframes gradientShift {
             0% { background-position: 0% center; }
-            100% { background-position: 200% center; }
+            100% { background-position: 300% center; }
         }
 
         /* CABECERA / NAVEGACIÓN */
@@ -77,8 +82,10 @@
             z-index: 1000;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            background: rgba(10, 10, 26, 0.7);
+            background: rgba(10, 10, 26, 0.8);
             border-bottom: 1px solid var(--glass-border);
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .header-left {
@@ -102,10 +109,41 @@
             -webkit-text-fill-color: transparent;
         }
 
+        /* SELECTOR DE IDIOMAS */
+        .lang-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--glass-bg);
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+        
+        .lang-selector i {
+            color: var(--primary-blue);
+        }
+
+        .lang-selector select {
+            background: transparent;
+            color: white;
+            border: none;
+            outline: none;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .lang-selector select option {
+            background: var(--bg-dark);
+            color: white;
+        }
+
         .social-links a {
             color: var(--text-light);
-            font-size: 1.5rem;
-            margin-left: 20px;
+            font-size: 1.4rem;
+            margin-left: 15px;
             transition: all 0.3s ease;
             text-decoration: none;
         }
@@ -116,19 +154,19 @@
             text-shadow: 0 0 10px var(--primary-blue);
         }
 
-        /* HERO SECTION (Portada Principal) */
+        /* HERO SECTION */
         .hero {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 80px 20px 60px;
+            padding: 70px 20px 60px;
             position: relative;
         }
 
         .hero img.main-logo {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 30px;
             margin-bottom: 30px;
             box-shadow: 0 10px 40px rgba(139, 0, 255, 0.4), 0 0 20px rgba(0, 210, 255, 0.3);
@@ -214,7 +252,7 @@
             color: var(--text-muted);
         }
 
-        /* GALERÍA DE LOGOS / ICONOS (Glassmorphism) */
+        /* GALERÍA DE LOGOS */
         .gallery-section {
             padding: 60px 5%;
             max-width: 1200px;
@@ -248,7 +286,7 @@
         .gallery-card:hover {
             transform: translateY(-10px);
             border-color: var(--primary-blue);
-            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.2), 0 0 15px var(--primary-purple);
             background: rgba(255, 255, 255, 0.08);
         }
 
@@ -299,31 +337,46 @@
             text-decoration: underline;
         }
 
-        /* RESPONSIVE DESIGN */
         @media (max-width: 768px) {
             .hero h2 { font-size: 2.5rem; }
-            .hero p { font-size: 1rem; }
-            header { flex-direction: column; gap: 15px; }
-            .social-links a { margin: 0 10px; }
+            header { flex-direction: column; text-align: center; }
+            .header-left { justify-content: center; }
+            .barnet { font-size: 0.85rem; padding: 12px 5px; letter-spacing: 1px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- BANNER SUPERIOR -->
+    <!-- EL BARNET: Ahora con más altura, borde neón y fondo animado brillante -->
     <div class="barnet">
-        🚀 Descubre el poder de la IA en tus vídeos - MaxStudio Official
+        🚀 Descubre el poder de la IA en tus vídeos - MaxStudio Official 🚀
     </div>
 
     <!-- CABECERA -->
     <header>
         <div class="header-left">
-            <!-- Reemplaza 'logo_app_cineia.png' si tu logo principal tiene otro nombre exacto en tu repo -->
             <img src="logo_app_cineia.png" alt="CINEIA Logo">
             <h1>CINEIA</h1>
         </div>
+        
+        <!-- SELECTOR DE IDIOMAS -->
+        <div class="lang-selector">
+            <i class="fa-solid fa-globe"></i>
+            <select id="languageSelect" onchange="changeLanguage(this.value)">
+                <option value="es">🇪🇸 Español</option>
+                <option value="en">🇬🇧 English</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="it">🇮🇹 Italiano</option>
+                <option value="pt">🇵🇹 Português</option>
+                <option value="ru">🇷🇺 Русский</option>
+                <option value="ja">🇯🇵 日本語</option>
+                <option value="zh">🇨🇳 中文</option>
+                <option value="ar">🇸🇦 العربية</option>
+            </select>
+        </div>
+
         <div class="social-links">
-            <!-- Enlaces a tus redes -->
             <a href="https://x.com/hellofiti" target="_blank" title="Síguenos en X"><i class="fa-brands fa-x-twitter"></i></a>
             <a href="https://maxstudiotoken.github.io/MaxStudio/" target="_blank" title="MaxStudio Official"><i class="fa-solid fa-globe"></i></a>
         </div>
@@ -332,102 +385,350 @@
     <!-- HERO SECTION -->
     <section class="hero">
         <img src="logo_app_cineia.png" alt="CINEIA App Icon" class="main-logo">
-        <h2>🎬 CINEIA: <span>AI VIDEO EFFECTS</span></h2>
-        <p>¡Convierte tus vídeos en auténticas escenas de cine con el poder de la inteligencia artificial! Diseñada para transformar tus grabaciones en creaciones espectaculares mediante efectos visuales y herramientas creativas.</p>
-        <a href="https://maxstudiotoken.github.io/MaxStudio/" class="btn-primary" target="_blank">Descubre MaxStudio</a>
+        <h2 data-key="hero_title">🎬 CINEIA: <span>AI VIDEO EFFECTS</span></h2>
+        <p data-key="hero_desc">¡Convierte tus vídeos en auténticas escenas de cine con el poder de la inteligencia artificial! Diseñada para transformar tus grabaciones en creaciones espectaculares mediante efectos visuales y herramientas creativas.</p>
+        <a href="https://maxstudiotoken.github.io/MaxStudio/" class="btn-primary" target="_blank" data-key="hero_btn">Descubre MaxStudio</a>
     </section>
 
-    <!-- SECCIÓN DE TEXTO / CARACTERÍSTICAS -->
+    <!-- SECCIÓN DE TEXTO -->
     <section class="features-text">
-        <h3>✨ Descubre nuevas posibilidades</h3>
+        <h3 data-key="feat_title">✨ Descubre nuevas posibilidades</h3>
         <div class="features-grid-text">
             <div class="feature-item">
-                <h4><i class="fa-solid fa-wand-magic-sparkles"></i> Efectos Especiales con IA</h4>
-                <p>Crea escenas sorprendentes con efectos visuales inspirados en el mundo del cine.</p>
+                <h4><i class="fa-solid fa-wand-magic-sparkles"></i> <span data-key="feat1_title">Efectos Especiales con IA</span></h4>
+                <p data-key="feat1_desc">Crea escenas sorprendentes con efectos visuales inspirados en el mundo del cine.</p>
             </div>
             <div class="feature-item">
-                <h4><i class="fa-solid fa-film"></i> Edición de Vídeo</h4>
-                <p>Dale un toque profesional y creativo a tus grabaciones. Experimenta con diferentes estilos.</p>
+                <h4><i class="fa-solid fa-film"></i> <span data-key="feat2_title">Edición de Vídeo</span></h4>
+                <p data-key="feat2_desc">Dale un toque profesional y creativo a tus grabaciones. Experimenta con diferentes estilos.</p>
             </div>
             <div class="feature-item">
-                <h4><i class="fa-solid fa-bolt"></i> Creatividad sin Límites</h4>
-                <p>Desde vídeos de acción hasta escenas fantásticas, crea contenido original y llamativo.</p>
+                <h4><i class="fa-solid fa-bolt"></i> <span data-key="feat3_title">Creatividad sin Límites</span></h4>
+                <p data-key="feat3_desc">Desde vídeos de acción hasta escenas fantásticas, crea contenido original y llamativo.</p>
             </div>
             <div class="feature-item">
-                <h4><i class="fa-solid fa-mobile-screen"></i> Interfaz Moderna</h4>
-                <p>Fácil de utilizar, ideal para creadores de contenido y aficionados al cine.</p>
+                <h4><i class="fa-solid fa-mobile-screen"></i> <span data-key="feat4_title">Interfaz Moderna</span></h4>
+                <p data-key="feat4_desc">Fácil de utilizar, ideal para creadores de contenido y aficionados al cine.</p>
             </div>
         </div>
     </section>
 
-    <!-- GALERÍA DE LOGOS CON EXPLICACIÓN -->
+    <!-- GALERÍA DE LOGOS -->
     <section class="gallery-section">
-        <h3>🌟 Características Principales</h3>
+        <h3 data-key="gal_title">🌟 Características Principales</h3>
         <div class="gallery-grid">
-            
-            <!-- Iterando sobre los nombres de archivo de tu GitHub -->
             <div class="gallery-card">
                 <img src="logo_educacion.png" alt="Logo Educación">
-                <h4>Educación</h4>
-                <p>Aprende y enseña con herramientas visuales de vanguardia.</p>
+                <h4 data-key="gal1_title">Educación</h4>
+                <p data-key="gal1_desc">Aprende y enseña con herramientas visuales de vanguardia.</p>
             </div>
-
             <div class="gallery-card">
                 <img src="logo_cine.png" alt="Logo Cine">
-                <h4>Modo Cine</h4>
-                <p>Transforma tus clips con filtros y efectos de gran pantalla.</p>
+                <h4 data-key="gal2_title">Modo Cine</h4>
+                <p data-key="gal2_desc">Transforma tus clips con filtros y efectos de gran pantalla.</p>
             </div>
-
             <div class="gallery-card">
                 <img src="logo_publicidad.png" alt="Logo Publicidad">
-                <h4>Publicidad</h4>
-                <p>Crea anuncios impactantes y contenido para redes sociales.</p>
+                <h4 data-key="gal3_title">Publicidad</h4>
+                <p data-key="gal3_desc">Crea anuncios impactantes y contenido para redes sociales.</p>
             </div>
-
             <div class="gallery-card">
                 <img src="logo_ajustes.png" alt="Logo Ajustes">
-                <h4>Ajustes Pro</h4>
-                <p>Control total sobre la IA para resultados personalizados.</p>
+                <h4 data-key="gal4_title">Ajustes Pro</h4>
+                <p data-key="gal4_desc">Control total sobre la IA para resultados personalizados.</p>
             </div>
-
             <div class="gallery-card">
                 <img src="logo_otros.png" alt="Logo Otros">
-                <h4>Otros Efectos</h4>
-                <p>Explora una librería en constante crecimiento de efectos IA.</p>
+                <h4 data-key="gal5_title">Otros Efectos</h4>
+                <p data-key="gal5_desc">Explora una librería en constante crecimiento de efectos IA.</p>
             </div>
-
             <div class="gallery-card">
                 <img src="logo_app_cineia.png" alt="Logo App">
-                <h4>App CINEIA</h4>
-                <p>Lleva todo el poder de la edición cinematográfica en tu bolsillo.</p>
+                <h4 data-key="gal6_title">App CINEIA</h4>
+                <p data-key="gal6_desc">Lleva todo el poder de la edición cinematográfica en tu bolsillo.</p>
             </div>
-
             <div class="gallery-card">
                 <img src="elige_donde_sucede_logo.png" alt="Elige dónde sucede">
-                <h4>Elige dónde sucede</h4>
-                <p>Cambia el entorno y el escenario de tus vídeos con un clic.</p>
+                <h4 data-key="gal7_title">Elige dónde sucede</h4>
+                <p data-key="gal7_desc">Cambia el entorno y el escenario de tus vídeos con un clic.</p>
             </div>
-
             <div class="gallery-card">
                 <img src="elige_vestuario_logo.png" alt="Elige vestuario">
-                <h4>Vestuario IA</h4>
-                <p>Prueba diferentes estilos de ropa en tus personajes.</p>
+                <h4 data-key="gal8_title">Vestuario IA</h4>
+                <p data-key="gal8_desc">Prueba diferentes estilos de ropa en tus personajes.</p>
             </div>
-
             <div class="gallery-card">
                 <img src="planpartida_logo.png" alt="Plan Partida">
-                <h4>Plan Partida</h4>
-                <p>Estructura tus escenas y graba como un director de cine.</p>
+                <h4 data-key="gal9_title">Plan Partida</h4>
+                <p data-key="gal9_desc">Estructura tus escenas y graba como un director de cine.</p>
             </div>
-
         </div>
     </section>
 
     <!-- PIE DE PÁGINA -->
     <footer>
-        <p>Desarrollado por <a href="https://maxstudiotoken.github.io/MaxStudio/" target="_blank">MaxStudio</a></p>
-        <p>© 2026 CINEIA - AI Video Effects. Todos los derechos reservados.</p>
+        <p data-key="footer_dev">Desarrollado por <a href="https://maxstudiotoken.github.io/MaxStudio/" target="_blank">MaxStudio</a></p>
+        <p data-key="footer_rights">© 2026 CINEIA - AI Video Effects. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- SCRIPT DE TRADUCCIÓN -->
+    <script>
+        // Diccionario con las traducciones (10 idiomas)
+        const translations = {
+            es: {
+                barnet: "🚀 Descubre el poder de la IA en tus vídeos - MaxStudio Official 🚀",
+                hero_title: "🎬 CINEIA: <span>AI VIDEO EFFECTS</span>",
+                hero_desc: "¡Convierte tus vídeos en auténticas escenas de cine con el poder de la inteligencia artificial! Diseñada para transformar tus grabaciones en creaciones espectaculares mediante efectos visuales y herramientas creativas.",
+                hero_btn: "Descubre MaxStudio",
+                feat_title: "✨ Descubre nuevas posibilidades",
+                feat1_title: "Efectos Especiales con IA", feat1_desc: "Crea escenas sorprendentes con efectos visuales inspirados en el mundo del cine.",
+                feat2_title: "Edición de Vídeo", feat2_desc: "Dale un toque profesional y creativo a tus grabaciones. Experimenta con diferentes estilos.",
+                feat3_title: "Creatividad sin Límites", feat3_desc: "Desde vídeos de acción hasta escenas fantásticas, crea contenido original y llamativo.",
+                feat4_title: "Interfaz Moderna", feat4_desc: "Fácil de utilizar, ideal para creadores de contenido y aficionados al cine.",
+                gal_title: "🌟 Características Principales",
+                gal1_title: "Educación", gal1_desc: "Aprende y enseña con herramientas visuales de vanguardia.",
+                gal2_title: "Modo Cine", gal2_desc: "Transforma tus clips con filtros y efectos de gran pantalla.",
+                gal3_title: "Publicidad", gal3_desc: "Crea anuncios impactantes y contenido para redes sociales.",
+                gal4_title: "Ajustes Pro", gal4_desc: "Control total sobre la IA para resultados personalizados.",
+                gal5_title: "Otros Efectos", gal5_desc: "Explora una librería en constante crecimiento de efectos IA.",
+                gal6_title: "App CINEIA", gal6_desc: "Lleva todo el poder de la edición cinematográfica en tu bolsillo.",
+                gal7_title: "Elige dónde sucede", gal7_desc: "Cambia el entorno y el escenario de tus vídeos con un clic.",
+                gal8_title: "Vestuario IA", gal8_desc: "Prueba diferentes estilos de ropa en tus personajes.",
+                gal9_title: "Plan Partida", gal9_desc: "Estructura tus escenas y graba como un director de cine.",
+                footer_dev: "Desarrollado por <a href='https://maxstudiotoken.github.io/MaxStudio/' target='_blank'>MaxStudio</a>",
+                footer_rights: "© 2026 CINEIA - AI Video Effects. Todos los derechos reservados."
+            },
+            en: {
+                barnet: "🚀 Discover the power of AI in your videos - MaxStudio Official 🚀",
+                hero_title: "🎬 CINEIA: <span>AI VIDEO EFFECTS</span>",
+                hero_desc: "Turn your videos into authentic cinematic scenes with the power of artificial intelligence! Designed to transform your recordings into spectacular creations using visual effects and creative tools.",
+                hero_btn: "Discover MaxStudio",
+                feat_title: "✨ Discover new possibilities",
+                feat1_title: "AI Special Effects", feat1_desc: "Create stunning scenes with visual effects inspired by the world of cinema.",
+                feat2_title: "Video Editing", feat2_desc: "Give your recordings a professional and creative touch. Experiment with different styles.",
+                feat3_title: "Creativity Without Limits", feat3_desc: "From action videos to fantastic scenes, create original and striking content.",
+                feat4_title: "Modern Interface", feat4_desc: "Easy to use, ideal for content creators and cinema fans.",
+                gal_title: "🌟 Main Features",
+                gal1_title: "Education", gal1_desc: "Learn and teach with cutting-edge visual tools.",
+                gal2_title: "Cinema Mode", gal2_desc: "Transform your clips with big-screen filters and effects.",
+                gal3_title: "Advertising", gal3_desc: "Create impactful ads and social media content.",
+                gal4_title: "Pro Settings", gal4_desc: "Total control over the AI for customized results.",
+                gal5_title: "Other Effects", gal5_desc: "Explore a constantly growing library of AI effects.",
+                gal6_title: "CINEIA App", gal6_desc: "Carry the full power of cinematic editing in your pocket.",
+                gal7_title: "Choose the setting", gal7_desc: "Change the environment and setting of your videos with one click.",
+                gal8_title: "AI Wardrobe", gal8_desc: "Try different clothing styles on your characters.",
+                gal9_title: "Storyboard", gal9_desc: "Structure your scenes and shoot like a film director.",
+                footer_dev: "Developed by <a href='https://maxstudiotoken.github.io/MaxStudio/' target='_blank'>MaxStudio</a>",
+                footer_rights: "© 2026 CINEIA - AI Video Effects. All rights reserved."
+            },
+            fr: {
+                barnet: "🚀 Découvrez la puissance de l'IA dans vos vidéos - MaxStudio Officiel 🚀",
+                hero_title: "🎬 CINEIA : <span>EFFETS VIDÉO IA</span>",
+                hero_desc: "Transformez vos vidéos en véritables scènes de cinéma grâce à la puissance de l'intelligence artificielle ! Conçue pour transformer vos enregistrements en créations spectaculaires.",
+                hero_btn: "Découvrir MaxStudio",
+                feat_title: "✨ Découvrez de nouvelles possibilités",
+                feat1_title: "Effets Spéciaux IA", feat1_desc: "Créez des scènes étonnantes avec des effets visuels inspirés du cinéma.",
+                feat2_title: "Montage Vidéo", feat2_desc: "Donnez une touche professionnelle et créative à vos enregistrements.",
+                feat3_title: "Créativité Sans Limites", feat3_desc: "Des vidéos d'action aux scènes fantastiques, créez un contenu original.",
+                feat4_title: "Interface Moderne", feat4_desc: "Facile à utiliser, idéal pour les créateurs de contenu.",
+                gal_title: "🌟 Caractéristiques Principales",
+                gal1_title: "Éducation", gal1_desc: "Apprenez et enseignez avec des outils visuels de pointe.",
+                gal2_title: "Mode Cinéma", gal2_desc: "Transformez vos clips avec des filtres grand écran.",
+                gal3_title: "Publicité", gal3_desc: "Créez des publicités percutantes et du contenu pour les réseaux.",
+                gal4_title: "Réglages Pro", gal4_desc: "Contrôle total sur l'IA pour des résultats personnalisés.",
+                gal5_title: "Autres Effets", gal5_desc: "Explorez une bibliothèque d'effets IA en constante croissance.",
+                gal6_title: "App CINEIA", gal6_desc: "Emportez toute la puissance du montage cinématographique.",
+                gal7_title: "Choisir le lieu", gal7_desc: "Changez l'environnement de vos vidéos en un clic.",
+                gal8_title: "Garde-robe IA", gal8_desc: "Essayez différents styles de vêtements sur vos personnages.",
+                gal9_title: "Storyboard", gal9_desc: "Structurez vos scènes et filmez comme un réalisateur.",
+                footer_dev: "Développé par <a href='https://maxstudiotoken.github.io/MaxStudio/' target='_blank'>MaxStudio</a>",
+                footer_rights: "© 2026 CINEIA - AI Video Effects. Tous droits réservés."
+            },
+            de: {
+                barnet: "🚀 Entdecke die Kraft der KI in deinen Videos - MaxStudio Offiziell 🚀",
+                hero_title: "🎬 CINEIA: <span>KI-VIDEOEFFEKTE</span>",
+                hero_desc: "Verwandeln Sie Ihre Videos mit der Kraft der künstlichen Intelligenz in authentische Filmszenen! Entwickelt, um Ihre Aufnahmen in spektakuläre Kreationen zu verwandeln.",
+                hero_btn: "MaxStudio entdecken",
+                feat_title: "✨ Entdecke neue Möglichkeiten",
+                feat1_title: "KI-Spezialeffekte", feat1_desc: "Erstellen Sie atemberaubende Szenen mit visuellen Effekten aus der Filmwelt.",
+                feat2_title: "Videobearbeitung", feat2_desc: "Verleihen Sie Ihren Aufnahmen einen professionellen und kreativen Touch.",
+                feat3_title: "Kreativität ohne Grenzen", feat3_desc: "Von Actionvideos bis hin zu fantastischen Szenen, erstellen Sie originelle Inhalte.",
+                feat4_title: "Moderne Oberfläche", feat4_desc: "Einfach zu bedienen, ideal für Content-Ersteller und Filmfans.",
+                gal_title: "🌟 Hauptmerkmale",
+                gal1_title: "Bildung", gal1_desc: "Lernen und lehren Sie mit modernsten visuellen Werkzeugen.",
+                gal2_title: "Kinomodus", gal2_desc: "Verwandeln Sie Ihre Clips mit Filtern und Effekten für die große Leinwand.",
+                gal3_title: "Werbung", gal3_desc: "Erstellen Sie wirkungsvolle Anzeigen und Inhalte für soziale Medien.",
+                gal4_title: "Pro-Einstellungen", gal4_desc: "Volle Kontrolle über die KI für individuelle Ergebnisse.",
+                gal5_title: "Weitere Effekte", gal5_desc: "Entdecken Sie eine ständig wachsende Bibliothek von KI-Effekten.",
+                gal6_title: "CINEIA App", gal6_desc: "Tragen Sie die volle Kraft der Film-bearbeitung in Ihrer Tasche.",
+                gal7_title: "Schauplatz wählen", gal7_desc: "Ändern Sie die Umgebung Ihrer Videos mit einem Klick.",
+                gal8_title: "KI-Garderobe", gal8_desc: "Probieren Sie verschiedene Kleidungsstile für Ihre Charaktere aus.",
+                gal9_title: "Storyboard", gal9_desc: "Strukturieren Sie Ihre Szenen und drehen Sie wie ein Regisseur.",
+                footer_dev: "Entwickelt von <a href='https://maxstudiotoken.github.io/MaxStudio/' target='_blank'>MaxStudio</a>",
+                footer_rights: "© 2026 CINEIA - AI Video Effects. Alle Rechte vorbehalten."
+            },
+            it: {
+                barnet: "🚀 Scopri il potere dell'IA nei tuoi video - MaxStudio Ufficiale 🚀",
+                hero_title: "🎬 CINEIA: <span>EFFETTI VIDEO IA</span>",
+                hero_desc: "Trasforma i tuoi video in autentiche scene cinematografiche con il potere dell'intelligenza artificiale! Progettata per trasformare le tue registrazioni in creazioni spettacolari.",
+                hero_btn: "Scopri MaxStudio",
+                feat_title: "✨ Scopri nuove possibilità",
+                feat1_title: "Effetti Speciali IA", feat1_desc: "Crea scene sorprendenti con effetti visivi ispirati al mondo del cinema.",
+                feat2_title: "Montaggio Video", feat2_desc: "Dai un tocco professionale e creativo alle tue registrazioni.",
+                feat3_title: "Creatività Senza Limiti", feat3_desc: "Dai video d'azione alle scene fantastiche, crea contenuti originali.",
+                feat4_title: "Interfaccia Moderna", feat4_desc: "Facile da usare, ideale per i creatori di contenuti.",
+                gal_title: "🌟 Caratteristiche Principali",
+                gal1_title: "Istruzione", gal1_desc: "Impara e insegna con strumenti visivi all'avanguardia.",
+                gal2_title: "Modalità Cinema", gal2_desc: "Trasforma i tuoi clip con filtri ed effetti da grande schermo.",
+                gal3_title: "Pubblicità", gal3_desc: "Crea annunci di grande impatto e contenuti per i social.",
+                gal4_title: "Impostazioni Pro", gal4_desc: "Controllo totale sull'IA per risultati personalizzati.",
+                gal5_title: "Altri Effetti", gal5_desc: "Esplora una libreria in continua crescita di effetti IA.",
+                gal6_title: "App CINEIA", gal6_desc: "Porta tutta la potenza del montaggio cinematografico in tasca.",
+                gal7_title: "Scegli l'ambientazione", gal7_desc: "Cambia l'ambiente e lo scenario dei tuoi video con un clic.",
+                gal8_title: "Guardaroba IA", gal8_desc: "Prova diversi stili di abbigliamento sui tuoi personaggi.",
+                gal9_title: "Storyboard", gal9_desc: "Struttura le tue scene e gira come un regista.",
+                footer_dev: "Sviluppato da <a href='https://maxstudiotoken.github.io/MaxStudio/' target='_blank'>MaxStudio</a>",
+                footer_rights: "© 2026 CINEIA - AI Video Effects. Tutti i diritti riservati."
+            },
+            pt: {
+                barnet: "🚀 Descubra o poder da IA nos seus vídeos - MaxStudio Oficial 🚀",
+                hero_title: "🎬 CINEIA: <span>EFEITOS DE VÍDEO IA</span>",
+                hero_desc: "Transforme os seus vídeos em autênticas cenas de cinema com o poder da inteligência artificial! Concebida para transformar as suas gravações em criações espetaculares.",
+                hero_btn: "Descobrir MaxStudio",
+                feat_title: "✨ Descubra novas possibilidades",
+                feat1_title: "Efeitos Especiais IA", feat1_desc: "Crie cenas surpreendentes com efeitos visuais inspirados no cinema.",
+                feat2_title: "Edição de Vídeo", feat2_desc: "Dê um toque profissional e criativo às suas gravações.",
+                feat3_title: "Criatividade Sem Limites", feat3_desc: "De vídeos de ação a cenas fantásticas, crie conteúdo original.",
+                feat4_title: "Interface Moderna", feat4_desc: "Fácil de utilizar, ideal para criadores de conteúdo.",
+                gal_title: "🌟 Características Principais",
+                gal1_title: "Educação", gal1_desc: "Aprenda e ensine com ferramentas visuais de vanguarda.",
+                gal2_title: "Modo Cinema", gal2_desc: "Transforme os seus clipes com filtros e efeitos de grande ecrã.",
+                gal3_title: "Publicidade", gal3_desc: "Crie anúncios impactantes e conteúdo para redes sociais.",
+                gal4_title: "Definições Pro", gal4_desc: "Controlo total sobre a IA para resultados personalizados.",
+                gal5_title: "Outros Efeitos", gal5_desc: "Explore uma biblioteca em constante crescimento de efeitos IA.",
+                gal6_title: "App CINEIA", gal6_desc: "Leve todo o poder da edição cinematográfica no seu bolso.",
+                gal7_title: "Escolha o cenário", gal7_desc: "Mude o ambiente e o cenário dos seus vídeos com um clique.",
+                gal8_title: "Guarda-roupa IA", gal8_desc: "Experimente diferentes estilos de roupa nos seus personagens.",
+                gal9_title: "Storyboard", gal9_desc: "Estruture as suas cenas e grave como um realizador de cinema.",
+                footer_dev: "Desenvolvido por <a href='https://maxstudiotoken.github.io/MaxStudio/' target='_blank'>MaxStudio</a>",
+                footer_rights: "© 2026 CINEIA - AI Video Effects. Todos os direitos reservados."
+            },
+            ru: {
+                barnet: "🚀 Откройте силу ИИ в ваших видео - MaxStudio Official 🚀",
+                hero_title: "🎬 CINEIA: <span>ИИ ВИДЕОЭФФЕКТЫ</span>",
+                hero_desc: "Превратите свои видео в настоящие кинематографические сцены с помощью искусственного интеллекта! Создано для преобразования ваших записей в захватывающие творения.",
+                hero_btn: "Открыть MaxStudio",
+                feat_title: "✨ Откройте новые возможности",
+                feat1_title: "Спецэффекты ИИ", feat1_desc: "Создавайте потрясающие сцены с визуальными эффектами из мира кино.",
+                feat2_title: "Видеомонтаж", feat2_desc: "Придайте вашим записям профессиональный и творческий вид.",
+                feat3_title: "Творчество без границ", feat3_desc: "От экшн-видео до фантастических сцен — создавайте оригинальный контент.",
+                feat4_title: "Современный интерфейс", feat4_desc: "Простой в использовании, идеально подходит для создателей контента.",
+                gal_title: "🌟 Основные характеристики",
+                gal1_title: "Образование", gal1_desc: "Учитесь и преподавайте с помощью передовых визуальных инструментов.",
+                gal2_title: "Режим кино", gal2_desc: "Преобразуйте клипы с помощью фильтров и эффектов большого экрана.",
+                gal3_title: "Реклама", gal3_desc: "Создавайте яркую рекламу и контент для соцсетей.",
+                gal4_title: "Pro-настройки", gal4_desc: "Полный контроль над ИИ для индивидуальных результатов.",
+                gal5_title: "Другие эффекты", gal5_desc: "Исследуйте постоянно растущую библиотеку эффектов ИИ.",
+                gal6_title: "Приложение CINEIA", gal6_desc: "Носите всю мощь кинематографического монтажа в кармане.",
+                gal7_title: "Выберите место", gal7_desc: "Меняйте окружение и сценарий ваших видео одним кликом.",
+                gal8_title: "ИИ Гардероб", gal8_desc: "Примеряйте разные стили одежды на своих персонажей.",
+                gal9_title: "Раскадровка", gal9_desc: "Структурируйте сцены и снимайте как кинорежиссер.",
+                footer_dev: "Разработано <a href='https://maxstudiotoken.github.io/MaxStudio/' target='_blank'>MaxStudio</a>",
+                footer_rights: "© 2026 CINEIA - AI Video Effects. Все права защищены."
+            },
+            ja: {
+                barnet: "🚀 ビデオにAIの力を - MaxStudio Official 🚀",
+                hero_title: "🎬 CINEIA: <span>AIビデオエフェクト</span>",
+                hero_desc: "人工知能の力で、あなたのビデオを本格的な映画のワンシーンに！視覚効果とクリエイティブなツールで、あなたの映像を spectacular な作品に変えるために設計されています。",
+                hero_btn: "MaxStudioを発見する",
+                feat_title: "✨ 新しい可能性を発見する",
+                feat1_title: "AI特殊効果", feat1_desc: "映画の世界にインスパイアされた視覚効果で驚くべきシーンを作成します。",
+                feat2_title: "ビデオ編集", feat2_desc: "あなたの映像にプロフェッショナルでクリエイティブなタッチを加えます。",
+                feat3_title: "無限の創造性", feat3_desc: "アクションビデオからファンタジーシーンまで、オリジナルのコンテンツを作成します。",
+                feat4_title: "モダンなインターフェース", feat4_desc: "使いやすく、コンテンツクリエイターや映画ファンに最適です。",
+                gal_title: "🌟 主な特徴",
+                gal1_title: "教育", gal1_desc: "最先端の視覚ツールで学び、教えましょう。",
+                gal2_title: "シネマモード", gal2_desc: "大画面のフィルターとエフェクトでクリップを変身させます。",
+                gal3_title: "広告", gal3_desc: "インパクトのある広告やソーシャルメディア向けコンテンツを作成します。",
+                gal4_title: "プロ設定", gal4_desc: "カスタマイズされた結果を得るためにAIを完全にコントロールします。",
+                gal5_title: "その他のエフェクト", gal5_desc: "常に成長しているAIエフェクトのライブラリを探索します。",
+                gal6_title: "CINEIAアプリ", gal6_desc: "映画編集の力をポケットに。",
+                gal7_title: "場所を選択", gal7_desc: "ワンクリックでビデオの環境と設定を変更します。",
+                gal8_title: "AIワードローブ", gal8_desc: "キャラクターにさまざまな服装のスタイルを試してみてください。",
+                gal9_title: "絵コンテ", gal9_desc: "シーンを構成し、映画監督のように撮影します。",
+                footer_dev: "<a href='https://maxstudiotoken.github.io/MaxStudio/' target='_blank'>MaxStudio</a> によって開発されました",
+                footer_rights: "© 2026 CINEIA - AI Video Effects. 無断複写・転載を禁じます。"
+            },
+            zh: {
+                barnet: "🚀 在您的视频中发现AI的力量 - MaxStudio 官方 🚀",
+                hero_title: "🎬 CINEIA: <span>AI 视频特效</span>",
+                hero_desc: "借助人工智能的力量，将您的视频变成真实的电影场景！旨在通过视觉效果和创意工具将您的录音转化为壮观的创作。",
+                hero_btn: "探索 MaxStudio",
+                feat_title: "✨ 发现新的可能性",
+                feat1_title: "AI 特效", feat1_desc: "使用受电影世界启发的视觉效果创建令人惊叹的场景。",
+                feat2_title: "视频编辑", feat2_desc: "为您的录音增添专业和创意的触感。尝试不同的风格。",
+                feat3_title: "无限创意", feat3_desc: "从动作视频到奇幻场景，创建原创且引人注目的内容。",
+                feat4_title: "现代界面", feat4_desc: "易于使用，非常适合内容创作者和电影爱好者。",
+                gal_title: "🌟 主要特点",
+                gal1_title: "教育", gal1_desc: "使用尖端的视觉工具学习和教学。",
+                gal2_title: "电影模式", gal2_desc: "使用大屏幕滤镜和特效转换您的剪辑。",
+                gal3_title: "广告", gal3_desc: "创建有影响力的广告和社交媒体内容。",
+                gal4_title: "专业设置", gal4_desc: "完全控制AI以获得定制结果。",
+                gal5_title: "其他特效", gal5_desc: "探索不断增长的AI特效库。",
+                gal6_title: "CINEIA 应用", gal6_desc: "将电影剪辑的全部力量装进口袋。",
+                gal7_title: "选择场景", gal7_desc: "一键更改视频的环境和场景。",
+                gal8_title: "AI 衣橱", gal8_desc: "在您的角色上尝试不同的服装风格。",
+                gal9_title: "故事板", gal9_desc: "构建您的场景并像电影导演一样拍摄。",
+                footer_dev: "由 <a href='https://maxstudiotoken.github.io/MaxStudio/' target='_blank'>MaxStudio</a> 开发",
+                footer_rights: "© 2026 CINEIA - AI Video Effects. 保留所有权利。"
+            },
+            ar: {
+                barnet: "🚀 اكتشف قوة الذكاء الاصطناعي في مقاطع الفيديو الخاصة بك - MaxStudio الرسمي 🚀",
+                hero_title: "🎬 CINEIA: <span>تأثيرات فيديو بالذكاء الاصطناعي</span>",
+                hero_desc: "حول مقاطع الفيديو الخاصة بك إلى مشاهد سينمائية حقيقية بقوة الذكاء الاصطناعي! مصمم لتحويل تسجيلاتك إلى إبداعات مذهلة باستخدام التأثيرات البصرية والأدوات الإبداعية.",
+                hero_btn: "اكتشف MaxStudio",
+                feat_title: "✨ اكتشف إمكانيات جديدة",
+                feat1_title: "تأثيرات خاصة بالذكاء الاصطناعي", feat1_desc: "أنشئ مشاهد مذهلة بتأثيرات بصرية مستوحاة من عالم السينما.",
+                feat2_title: "تحرير الفيديو", feat2_desc: "أضف لمسة احترافية وإبداعية إلى تسجيلاتك.",
+                feat3_title: "إبداع بلا حدود", feat3_desc: "من مقاطع الفيديو الحركية إلى المشاهد الخيالية، أنشئ محتوى أصليًا ولفتًا للانتباه.",
+                feat4_title: "واجهة حديثة", feat4_desc: "سهل الاستخدام، مثالي لمنشئي المحتوى وعشاق السينما.",
+                gal_title: "🌟 الميزات الرئيسية",
+                gal1_title: "التعليم", gal1_desc: "تعلم وعلم باستخدام أدوات بصرية متطورة.",
+                gal2_title: "وضع السينما", gal2_desc: "حول مقاطعك بفلاتر وتأثيرات الشاشة الكبيرة.",
+                gal3_title: "الإعلان", gal3_desc: "أنشئ إعلانات مؤثرة ومحتوى لوسائل التواصل الاجتماعي.",
+                gal4_title: "إعدادات احترافية", gal4_desc: "تحكم كامل في الذكاء الاصطناعي للحصول على نتائج مخصصة.",
+                gal5_title: "تأثيرات أخرى", gal5_desc: "استكشف مكتبة متنامية باستمرار من تأثيرات الذكاء الاصطناعي.",
+                gal6_title: "تطبيق CINEIA", gal6_desc: "احمل كل قوة التحرير السينمائي في جيبك.",
+                gal7_title: "اختر المكان", gal7_desc: "غير بيئة وسيناريو مقاطع الفيديو الخاصة بك بنقرة واحدة.",
+                gal8_title: "خزانة ملابس AI", gal8_desc: "جرب أنماط ملابس مختلفة على شخصياتك.",
+                gal9_title: "لوحة القصة", gal9_desc: "هيكل مشاهدك وصور مثل مخرج سينمائي.",
+                footer_dev: "تم التطوير بواسطة <a href='https://maxstudiotoken.github.io/MaxStudio/' target='_blank'>MaxStudio</a>",
+                footer_rights: "© 2026 CINEIA - AI Video Effects. جميع الحقوق محفوظة."
+            }
+        };
+
+        // Función que cambia los textos
+        function changeLanguage(lang) {
+            // Cambia el atributo lang del HTML para SEO
+            document.documentElement.lang = lang;
+            
+            // Busca todos los elementos que tengan el atributo data-key
+            const elements = document.querySelectorAll('[data-key]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    // Usa innerHTML para permitir las etiquetas <span> en el título
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Traduce también el Barnet superior
+            const barnet = document.querySelector('.barnet');
+            if (translations[lang] && translations[lang]['barnet']) {
+                barnet.innerHTML = translations[lang]['barnet'];
+            }
+        }
+    </script>
 </body>
 </html>
